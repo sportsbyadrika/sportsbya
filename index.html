@@ -144,20 +144,27 @@
             <p><i class="bi bi-telephone-fill text-primary me-2"></i> +91 9388 7788 85</p>
           </div>
           <div class="col-lg-6">
-            <form onsubmit="event.preventDefault(); alert('Thanks! We will connect with you soon.'); this.reset();">
+            <form id="contactForm">
               <div class="mb-3">
-                <label class="form-label">Name</label>
-                <input type="text" class="form-control" required>
+                <label class="form-label" for="contactName">Name</label>
+                <input type="text" class="form-control" id="contactName" name="name" required>
               </div>
               <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="email" class="form-control" required>
+                <label class="form-label" for="contactEmail">Email</label>
+                <input type="email" class="form-control" id="contactEmail" name="email" required>
               </div>
               <div class="mb-3">
-                <label class="form-label">Message</label>
-                <textarea class="form-control" rows="4" required></textarea>
+                <label class="form-label" for="contactMessage">Message</label>
+                <textarea class="form-control" id="contactMessage" name="message" rows="4" required></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Send</button>
+              <input type="hidden" name="_subject" value="New enquiry via SportsbyA site">
+              <input type="hidden" name="_captcha" value="false">
+              <div class="d-grid d-md-flex align-items-center gap-3">
+                <button type="submit" class="btn btn-primary" id="contactSubmit">Send</button>
+                <div class="flex-grow-1">
+                  <div class="alert d-none mb-0 py-2 px-3" role="alert" id="contactAlert"></div>
+                </div>
+              </div>
             </form>
           </div>
         </div>
@@ -180,6 +187,49 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+    <script>
+      document.getElementById('y').textContent = new Date().getFullYear();
+
+      const contactForm = document.getElementById('contactForm');
+      const contactAlert = document.getElementById('contactAlert');
+      const contactSubmit = document.getElementById('contactSubmit');
+      const CONTACT_ENDPOINT = 'contact-handler.php';
+
+      if (contactForm) {
+        contactForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          contactAlert.classList.add('d-none');
+          contactAlert.classList.remove('alert-success', 'alert-danger');
+          contactSubmit.disabled = true;
+          contactSubmit.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Sending...';
+
+          try {
+            const formData = new FormData(contactForm);
+            const response = await fetch(CONTACT_ENDPOINT, {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json'
+              },
+              body: formData
+            });
+
+            if (!response.ok) {
+              throw new Error('Failed to send message');
+            }
+
+            contactAlert.textContent = 'Thanks! We will connect with you soon.';
+            contactAlert.classList.add('alert-success');
+            contactForm.reset();
+          } catch (error) {
+            contactAlert.textContent = 'Something went wrong. Please try again in a moment.';
+            contactAlert.classList.add('alert-danger');
+          } finally {
+            contactAlert.classList.remove('d-none');
+            contactSubmit.disabled = false;
+            contactSubmit.textContent = 'Send';
+          }
+        });
+      }
+    </script>
   </body>
 </html>

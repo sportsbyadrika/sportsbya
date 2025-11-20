@@ -24,6 +24,12 @@
       .icon-wrap{ width:52px; height:52px; border-radius:14px; display:grid; place-items:center; background:rgba(249,115,22,.12); color:var(--brand); }
       .btn-whatsapp{ background:#25D366; border:none; }
       html{ scroll-behavior: smooth; }
+      .category-card{ overflow:hidden; position:relative; }
+      .category-card img{ object-fit:cover; height:220px; width:100%; filter:brightness(.92); }
+      .category-card .category-badge{ position:absolute; top:16px; left:16px; background:rgba(15,23,42,.85); color:#fff; padding:8px 12px; border-radius:999px; display:inline-flex; align-items:center; gap:8px; }
+      .category-card .category-overlay{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,23,42,0.05) 0%, rgba(15,23,42,0.75) 100%); }
+      .category-card .category-body{ position:absolute; bottom:0; left:0; right:0; padding:24px; color:#fff; }
+      .category-card h5{ font-weight:700; }
     </style>
   </head>
   <body>
@@ -43,8 +49,8 @@
             <li class="nav-item"><a class="nav-link" href="#analytics">Analytics</a></li>
             <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
             <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-            <li class="nav-item ms-lg-3"><a class="btn btn-primary" href="#contact">Get Started</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            <li class="nav-item ms-lg-3"><a class="btn btn-primary" href="contact.html">Get Started</a></li>
           </ul>
         </div>
       </div>
@@ -58,7 +64,10 @@
             <span class="badge rounded-pill mb-3 bg-light text-dark"><i class="bi bi-stars me-1"></i> Sports Technology Partner</span>
             <h1 class="display-5 fw-bold mb-3">Empowering <span class="text-primary">Athletes</span> with Technology</h1>
             <p class="lead mb-4">From performance analytics to event management, SportsbyA Tech builds platforms that uplift athletes, coaches, and organizations.</p>
-            <a href="#contact" class="btn btn-primary btn-lg"><i class="bi bi-graph-up-arrow me-2"></i>Request a Demo</a>
+            <div class="d-flex gap-3 flex-wrap">
+              <a href="contact.html" class="btn btn-primary btn-lg"><i class="bi bi-graph-up-arrow me-2"></i>Request a Demo</a>
+              <a href="contact.html" class="btn btn-outline-primary btn-lg"><i class="bi bi-envelope me-2"></i>Contact Us</a>
+            </div>
           </div>
           <div class="col-lg-6 text-center">
             <img class="img-fluid rounded-4 shadow" src="athelete_performance.png" alt="Athlete performance" />
@@ -133,39 +142,50 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="py-5">
+    <!-- CORE CATEGORIES -->
+    <section id="categories" class="py-5">
       <div class="container">
-        <div class="row g-5">
-          <div class="col-lg-6">
-            <h2 class="section-title">Get in Touch</h2>
-            <p>Reach out to us for partnerships, demo requests, or collaboration opportunities.</p>
-            <p><i class="bi bi-envelope-fill text-primary me-2"></i> info@shootingsports.in</p>
-            <p><i class="bi bi-telephone-fill text-primary me-2"></i> +91 9388 7788 85</p>
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+          <div>
+            <h2 class="section-title mb-2">Core Sports Categories</h2>
+            <p class="mb-0 text-muted">Purpose-built solutions for the federations, schools, and clubs we serve.</p>
           </div>
-          <div class="col-lg-6">
-            <form id="contactForm">
-              <div class="mb-3">
-                <label class="form-label" for="contactName">Name</label>
-                <input type="text" class="form-control" id="contactName" name="name" required>
+          <a href="contact.html" class="btn btn-outline-primary"><i class="bi bi-chat-dots me-2"></i>Talk to our team</a>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="category-card rounded-4 shadow-sm bg-dark">
+              <img src="https://images.unsplash.com/photo-1502877828070-33b167ad6860?auto=format&fit=crop&w=1200&q=80" alt="Shooter aiming at target" class="img-fluid">
+              <div class="category-overlay"></div>
+              <div class="category-badge small"><i class="bi bi-bullseye"></i> Shooting Sports</div>
+              <div class="category-body">
+                <h5 class="mb-2">Shooting Sports</h5>
+                <p class="mb-0">Match-ready scoring, live targets, range management, and athlete progression tracking for rifle, pistol, and shotgun.</p>
               </div>
-              <div class="mb-3">
-                <label class="form-label" for="contactEmail">Email</label>
-                <input type="email" class="form-control" id="contactEmail" name="email" required>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="category-card rounded-4 shadow-sm bg-dark">
+              <img src="https://images.unsplash.com/photo-1508602636771-6130cf0c46cf?auto=format&fit=crop&w=1200&q=80" alt="School athletes racing on track" class="img-fluid">
+              <div class="category-overlay"></div>
+              <div class="category-badge small"><i class="bi bi-trophy"></i> School Sports Meet</div>
+              <div class="category-body">
+                <h5 class="mb-2">School Sports Meet</h5>
+                <p class="mb-0">Registrations, heat allocations, results, and certificates streamlined for inter-house and inter-school athletics.</p>
               </div>
-              <div class="mb-3">
-                <label class="form-label" for="contactMessage">Message</label>
-                <textarea class="form-control" id="contactMessage" name="message" rows="4" required></textarea>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="category-card rounded-4 shadow-sm bg-dark">
+              <img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1200&q=80" alt="Team huddle on field" class="img-fluid">
+              <div class="category-overlay"></div>
+              <div class="category-badge small"><i class="bi bi-building-gear"></i> Association/Club</div>
+              <div class="category-body">
+                <h5 class="mb-2">Association / Club Management</h5>
+                <p class="mb-0">Memberships, dues, squads, communications, and asset tracking to keep federations and clubs operating smoothly.</p>
               </div>
-              <input type="hidden" name="_subject" value="New enquiry via SportsbyA site">
-              <input type="hidden" name="_captcha" value="false">
-              <div class="d-grid d-md-flex align-items-center gap-3">
-                <button type="submit" class="btn btn-primary" id="contactSubmit">Send</button>
-                <div class="flex-grow-1">
-                  <div class="alert d-none mb-0 py-2 px-3" role="alert" id="contactAlert"></div>
-                </div>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -190,46 +210,6 @@
     <script>
       document.getElementById('y').textContent = new Date().getFullYear();
 
-      const contactForm = document.getElementById('contactForm');
-      const contactAlert = document.getElementById('contactAlert');
-      const contactSubmit = document.getElementById('contactSubmit');
-      const CONTACT_ENDPOINT = 'contact-handler.php';
-
-      if (contactForm) {
-        contactForm.addEventListener('submit', async (event) => {
-          event.preventDefault();
-          contactAlert.classList.add('d-none');
-          contactAlert.classList.remove('alert-success', 'alert-danger');
-          contactSubmit.disabled = true;
-          contactSubmit.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Sending...';
-
-          try {
-            const formData = new FormData(contactForm);
-            const response = await fetch(CONTACT_ENDPOINT, {
-              method: 'POST',
-              headers: {
-                'Accept': 'application/json'
-              },
-              body: formData
-            });
-
-            if (!response.ok) {
-              throw new Error('Failed to send message');
-            }
-
-            contactAlert.textContent = 'Thanks! We will connect with you soon.';
-            contactAlert.classList.add('alert-success');
-            contactForm.reset();
-          } catch (error) {
-            contactAlert.textContent = 'Something went wrong. Please try again in a moment.';
-            contactAlert.classList.add('alert-danger');
-          } finally {
-            contactAlert.classList.remove('d-none');
-            contactSubmit.disabled = false;
-            contactSubmit.textContent = 'Send';
-          }
-        });
-      }
     </script>
   </body>
 </html>
